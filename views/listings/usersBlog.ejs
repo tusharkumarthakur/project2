@@ -1,0 +1,73 @@
+<% layout("/layouts/boilerplate.ejs") -%>
+
+
+    <div class="flex-display container ">
+        <div class="side-bar mt-2" style="color: white !important;">
+            <a href="/blog/posts/mostLiked"><i class="fa-solid fa-heart"></i> Most liked</a>
+            <a href="/blog/posts/mostComment"><i class="fa-solid fa-comment"></i> Most comment</a>
+            <a href="/blog/posts/postReview"><i class="fa-solid fa-star"></i> Post review</a>
+            <!-- <a href="/blog/posts/mostSearched"><i class="fa-brands fa-searchengin"></i> Most searched</a> -->
+
+            <!-- <a href="/blog/posts/categories"><i class="fa-solid fa-table-list"></i> Categories</a> -->
+            <a href="/blog/posts/mostPosts"><i class="fa-solid fa-user-large"></i> Most posts</a>
+            <!-- <a href="/">related post</a> -->
+        </div>
+        <% for(let allData of AllData){ %>
+            <p class="mt-4"><b><i style="color: white !important;">~<%= allData.username  %> </i></b> </p>
+            <div class="red container ">
+
+                <div class="posts-create">
+                    <div class="row row-cols-lg-3 row-cols-md-2   row-cols-sm-1">
+                
+                        <% for(let data of allData.allBlogs){ %>
+                            <% if(data.published==="true" ){ %>
+                                <div class="card col all-posts-card mt-1" style="width: 20rem;">
+                                    <div class="card-body all-posts-card">
+                                        <a href="/blog/view/<%= data._id %>" class="card-link">
+                                            <img src="<%= data.image.url %>" loading="lazy" class="card-img-top" alt="n0_1mg"
+                                                height="200px">
+                                            <h5 class="card-title blog-card-title fornt-white">
+                                                <%= data.title %>
+                                            </h5>
+                                            <div class=" card-subtitle mb-2 text-body-secondary ">
+                                                <div class="fornt-white">
+                                                    <%= data.slug %>
+                                                </div>
+                                            </div>
+                                            <p class="fornt-white card-text">
+                                                <div
+                                                    style="color: white; max-height: 20px !important; max-width: 100px !important; overflow: hidden;">
+                                                    <i>
+                                                        <%- data.content%>
+                                                    </i>
+                                                </div>
+                                            </p>
+                                            <p style="max-height: 5px;" class="fornt-white">
+                                                <b>Author</b>: <%= data.author %>
+                                                    <i class="fa-solid fa-heart" style="float: right; color: red  !important;; "> &nbsp;
+                                                        <%= data.likeBy.length %>
+                                                    </i>
+                                            </p>
+                                        </a>
+                                        <!-- <a href="/blog/<%= data._id %>" class="card-link"><button>edit</button></a> -->
+                                    </div>
+                                </div>
+                
+                                <% } %>
+                                    <% } %>
+                    </div>
+                
+                
+                
+                </div>
+
+            </div> 
+            <div class="user-post-count login-color mb-2 mt-2">
+               <h4 class="mt-4"><i class="">Total posts <%= allData.allBlogs.length %></i></h4>
+            </div>
+
+
+            
+            <div class="gap-posts"></div>
+            <% } %>
+    </div>

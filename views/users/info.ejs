@@ -1,0 +1,68 @@
+<% layout("/layouts/boilerplate.ejs") -%>
+
+    <body>
+<h2>Your All Blogs</h2>
+<h4><a href="/blog/linked/account/<%= curUser._id %>">details</a></h4>
+<h4><a href="/lol"> change password</a></h4>
+<p>
+    <div class="ms-auto">
+        
+            <div class="container-fluid">
+                <form class="d-flex" role="search" action="/user/search/username" method="get">
+                    <input class="form-control-sm me-2  color-white" name="search" type="search" placeholder="Search User"
+                        aria-label="Search">
+                    <button class="btn btn-sm btn-outline-secondary" type="submit">Search</button>
+                </form>
+            </div>
+        
+    </div>
+</p>
+<!-- <input type="search"> -->
+        <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
+
+            <% if(allData.length==0) {%>
+                <div class="card col" style="width: 20rem;"> 
+                    <div class="card-body">
+                        <p>No post</p>
+                    </div>
+                </div>
+            <% } %>
+
+            <% for(let data of allData){ %>
+                
+                    <div class="card col" style="width: 20rem;">
+                        <div class="card-body">
+                            <a href="/blog/view/<%= data._id %>" class="card-link">
+                                <img src="<%= data.image.url %>" loading="lazy" class="card-img-top" alt="n0_1mg" height="200px">
+                                <h6 class="card-title">
+                                    <%= data.title %>
+                                </h6>
+                                <h6 class="card-subtitle mb-2 text-body-secondary">
+                                    <%= data.slug %>
+                                </h6>
+                                <p class="card-text login-color">
+                                    <i>
+                                        <%- data.content.slice(0,50)+"...." %>
+                                    </i>
+                                </p>
+                                <p><b>Author</b>: <%= data.author %>
+                                </p>
+                            </a>
+                            <!-- <a href="/blog/<%= data._id %>" class="card-link"><button>edit</button></a> -->
+                        </div>
+                    </div>
+                    
+                        <% } %>
+        </div>
+
+
+
+        <div class="newBlog mt-5 ">
+            <center>
+                <form action="/blog/new" method="get">
+                    <button class="btn btn-primary ">add new blog</button>
+                </form>
+            </center>
+        </div>
+
+    </body>

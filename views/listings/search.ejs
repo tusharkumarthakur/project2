@@ -1,0 +1,60 @@
+<% layout("/layouts/boilerplate.ejs") -%>
+
+
+    <div class="flex-display ">
+        <div class="flex-display container ">
+            <div class="side-bar mt-2" style="color: white !important;">
+                <a href="/blog/posts/mostLiked"><i class="fa-solid fa-heart"></i> Most liked</a>
+                <a href="/blog/posts/mostComment"><i class="fa-solid fa-comment"></i> Most comment</a>
+                <a href="/blog/posts/postReview"><i class="fa-solid fa-star"></i> Post review</a>
+                <!-- <a href="/blog/posts/mostSearched"><i class="fa-brands fa-searchengin"></i> Most searched</a> -->
+        
+                <!-- <a href="/blog/posts/categories"><i class="fa-solid fa-table-list"></i> Categories</a> -->
+                <a href="/blog/posts/mostPosts"><i class="fa-solid fa-user-large"></i> Most posts</a>
+                <!-- <a href="/">related post</a> -->
+            </div>
+        <div class="search-posts-create ">
+            <div class="row row-cols-lg-3 row-cols-md-2 mt-4  row-cols-sm-1">
+                <% if(allData.length==0) {%>
+                    <div class="card col " style="width: 20rem;">
+                        <div class="card-body">
+                            <p>No result found</p>
+                        </div>
+                    </div>
+                    <% } %>
+
+                        <% for(let data of allData){ %>
+                            <% if(data.published==="true" ){ %>
+                                <div class="card col all-posts-card" style="width: 20rem;">
+                                    <div class="card-body all-posts-card">
+                                        <a href="/blog/view/<%= data._id %>" class="card-link">
+                                            <img src="<%= data.image.url %>" loading="lazy" class="card-img-top"
+                                                alt="n0_1mg" height="200px">
+                                            <h5 class="card-title blog-card-title fornt-white">
+                                                <%= data.title %>
+                                            </h5>
+                                            <div class=" card-subtitle mb-2 text-body-secondary ">
+                                                <div class="fornt-white">
+                                                    <%= data.slug %>
+                                                </div>
+                                            </div>
+                                            <p class="fornt-white card-text login-color">
+                                                <i class="login-color">
+                                                    <%- data.content.slice(0,50)+"...." %>
+                                                </i>
+                                            </p>
+                                            <p class="fornt-white"><b>Author</b>: <%= data.author %>
+                                            </p>
+                                        </a>
+                                        <!-- <a href="/blog/<%= data._id %>" class="card-link"><button>edit</button></a> -->
+                                    </div>
+                                </div>
+
+                                <% } %>
+                                    <% } %>
+            </div>
+
+           
+
+        </div>
+    </div>

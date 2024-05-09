@@ -1,0 +1,100 @@
+<% layout("/layouts/boilerplate.ejs") -%>
+
+
+
+<div class="details-center mt-2">
+    
+    <div class="container mt-4 mb-4 p-3 d-flex justify-content-center " >
+        <div class="card p-4 " style="min-width: 500px !important; background-color: #272727">
+            <div class=" image d-flex flex-column justify-content-center align-items-center"><button
+                    class="porfile-image"><img style="border-radius: 50%;" src="<%= user.image.url %>" height="100"
+                        width="100" /></button><span class="name mt-3 login-color">~<%= user.username %></span><span
+                    class="idd login-color"><%= user.name %></span>
+                <div class="d-flex flex-row justify-content-center align-items-center gap-2"><span
+                        class="idd1 login-color"><%= user._id %></span><span><i class="fa fa-copy"></i></span></div>
+                <div class="d-flex flex-row justify-content-center align-items-center mt-3"><span class="number login-color"><%= user.followers.length %> <span
+                            class="follow login-color">Followers</span></span></div>
+                    <!-- <div class="d-flex flex-row justify-content-center align-items-center mt-3"><span class="number login-color">
+                            <%= user.following.length %> <span class="follow login-color">Following</span>
+                        </span></div> -->
+
+                            
+                                <% if(curUser._id.equals(user._id)){ %>
+                                    
+                                <% } else{ %>
+
+
+                                    <% if(follow) { %>
+                                    <form action="/user/follower/<%= curUser._id %>/post/<%= user._id %>" method="post">
+                                        <button class="btn btn-primary btn-sm mt-4">Unfollow</button>
+                                    </form>
+                                    <% } else { %>
+                                    <form action="/user/follower/<%= curUser._id %>/post/<%= user._id %>" method="post">
+                                        <button class="btn btn-primary btn-sm mt-4">Follow</button>
+                                    </form>
+                                    <% } %>
+                                <% } %>
+                            
+                
+                <div class="text mt-3 login-color"><span>About </span></div>
+                <div class="gap-3 mt-3 icons d-flex flex-row justify-content-center align-items-center login-color"><span><i
+                            class="fa fa-twitter"></i></span><span><i class="fa fa-facebook-f"></i></span><span><i
+                            class="fa fa-instagram"></i></span><span><i class="fa fa-linkedin"></i></span></div>
+                <div class=" px-2 rounded mt-4 date "><span class="join login-color">Joined <%= user.created_at.toISOString().slice(0,10) %></span></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <% if(curUser._id.equals(user._id)){ %>
+
+
+       <center>
+        <form action="/user/delete/<%= curUser._id %>" method="post" >
+            <button class="btn btn-sm btn-primary"> delete </button>
+        </form>
+
+       </center>
+        <% } %>
+
+<div class="row row-cols-lg-3 row-cols-md-2 mt-4  row-cols-sm-1">
+    <% if(allData.length==0) {%>
+        <div class="card col" style="width: 20rem;">
+            <div class="card-body">
+                <p>No post</p>
+            </div>
+        </div>
+        <% } %>
+
+            <% for(let data of allData){ %>
+                <% if(data.published==="true" ){ %>
+                    <div class="card col all-posts-card" style="width: 20rem;">
+                        <div class="card-body all-posts-card">
+                            <a href="/blog/view/<%= data._id %>" class="card-link">
+                                <img src="<%= data.image.url %>" loading="lazy" class="card-img-top" alt="n0_1mg"
+                                    height="200px">
+                                <h5 class="card-title blog-card-title fornt-white">
+                                    <%= data.title %>
+                                </h5>
+                                <div class=" card-subtitle mb-2 text-body-secondary ">
+                                    <div class="fornt-white">
+                                        <%= data.slug %>
+                                    </div>
+                                </div>
+                                <p class="fornt-white card-text ">
+                                    <i class="login-color">
+                                        <%-data.content.slice(0,50)+"...." %>
+                                    </i>
+                                </p>
+                                <p class="fornt-white"><b>Author</b>: <%= data.author %>
+                                </p>
+                            </a>
+                            <!-- <a href="/blog/<%= data._id %>" class="card-link"><button>edit</button></a> -->
+                        </div>
+                    </div>
+
+                    <% } %>
+                        <% } %>
+
+
+</div>

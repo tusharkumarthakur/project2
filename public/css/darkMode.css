@@ -1,0 +1,8 @@
+.publish-on-of{
+    width: 200px;
+    /* background-color: yellow; */
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+

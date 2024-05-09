@@ -1,0 +1,52 @@
+<% layout("/layouts/boilerplate.ejs") -%>
+
+<body>
+    <div class="container">
+        <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
+            <% for(let data of allData) { %>
+                <% if(data.published==="true" ) { %>
+                    <div class="col">
+                        <div class="card border-0 mb-4">
+                            <a href="/blog/view/<%= data._id %>" class="card-link">
+                                <img src="<%= data.image.url %>" class="card-img-top rounded-3" alt="<%= data.title %>">
+                            </a>
+                            <div class="card-body">
+                                <h5 class="card-title"><a href="/blog/view/<%= data._id %>"
+                                        class="card-link text-decoration-none text-dark">
+                                        <%= data.title %>
+                                    </a></h5>
+                                <h6 class="card-subtitle mb-2 text-muted">
+                                    <%= data.slug %>
+                                </h6>
+                                <p class="card-text">
+                                    <%= data.content.slice(0, 100) + '...' %>
+                                </p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div><b>Author:</b>
+                                        <%= data.author %>
+                                    </div>
+                                    <div class="like-button">
+                                        <!-- Like button -->
+                                        <button class="btn btn-sm btn-secondary" data-post-id="<%= data._id %>">
+                                            <i class="fa-solid fa-heart"></i>
+                                            <%= data.likeBy.length %>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <% } %>
+                        <% } %>
+        </div>
+    </div>
+
+    <div class="newBlog">
+        <center>
+            <form action="/blog/new" method="get">
+                <button class="new-blog-btn">add new blog</button>
+            </form>
+        </center>
+    </div>
+</body>
+

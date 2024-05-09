@@ -1,0 +1,395 @@
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    flex-grow: 1;    
+    margin: auto !important;
+    /* margin-left: 5rem !important; */
+}
+
+
+.row {
+    --bs-gutter-x: 0 !important;
+    justify-content: center;
+    gap: 2.8rem;
+
+}
+
+.card {
+    transition: .2s ease-in;
+}
+
+
+
+
+.fa-blog {
+    color: rgba(255, 0, 132, 0.803);
+    font-size: 1.7rem;
+}
+
+
+/* footer */
+footer {
+
+    margin-top: 1rem;
+    height: 7rem;
+    /* background-color: rgba(255, 192, 203, 0.299); */
+}
+
+.f-info {
+    padding: 1rem 1rem 0 1rem;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.f-info-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-size: large;
+    /* margin-right: 1rem; */
+    text-align: center;
+    /* background-color: green; */
+}
+
+.f-info-icons>i {
+    font-size: larger;
+    margin-right: 1rem;
+}
+
+.f-info-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.1rem;
+    text-align: center;
+    width: 100%;
+    /* background-color: red; */
+}
+
+
+.f-info-links>a {
+    text-decoration: none;
+    color: #121212;
+}
+
+.f-info-links>a:hover {
+    text-decoration: underline;
+    color: #121212;
+}
+
+/* card body */
+
+.card-body>a {
+    text-decoration: none;
+    color: #121212;
+    opacity: 1;
+}
+
+.card-body img:hover {
+    opacity: .8;
+}
+
+/* review */
+
+.review-card {
+    padding: 0 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    /* gap: 8rem; */
+    /* border: 2px solid black !important; */
+}
+
+.review-body {
+    /* display: fle; */
+    width: 400px;
+    margin-top: 1rem;
+    max-height: 2000px;
+    padding: 0.4rem;
+    /* margin-right: 1rem; */
+    height: min-content;
+    /* border-radius: 20px; */
+    /* border: 2px solid black; */
+    /* box-shadow: .1px .1px 1px .1px rgba(0, 0, 0, 0.803); */
+    /* overflow-y:auto; */
+}
+
+
+.review-like {
+    display: flex;
+    gap: 1rem;
+    justify-content: right;
+}
+
+.review-body-comment {
+    /* max-width: 100px; */
+    overflow-y: auto;
+    display: inline-block;
+    display: flex;
+    flex-wrap: wrap;
+    max-height: 170px;
+    /* border: 2px solid yellow; */
+}
+
+.review-body-rating {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.like-button {
+    border: none;
+    background-color: #fff;
+    /* background-color: yellow; */
+}
+
+.like-button .liked {
+    color: red;
+    /* background-color: yellow; */
+}
+
+.color-white{
+    background-color: #121212!important;
+    color: white !important;
+    padding: 1px 5px 1px 10px !important;
+}
+
+.container{
+    background-color: #262626;
+}
+
+
+
+.all-posts-card{
+    /* font-family:  sans-serif; */
+    /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    background-color: #262626 !important;
+    /* box-shadow: 1px 1px 10px #fff; */
+    /* color: #777 !important; */
+    /* background-color: yellow; */
+    border-radius: 5% !important;
+    /* animation: brightness 2s infinite !important  ; */
+   
+}
+
+
+@keyframes brightness {
+    0%{
+        box-shadow: inset 1px 10px 10px blue;
+    }
+    20%{
+        box-shadow: inset 1px 100px 10px #aaa;
+    }
+    40%{
+        box-shadow: 1px 10px 10px yellow;
+    }
+    70%{
+        box-shadow: inset 1px 10px 10px pink;
+    }
+    85%{
+        box-shadow:  1px 10px 10px #888;
+    }
+    100%{
+        box-shadow: 1px 1px 10px #fff;
+    }
+}
+
+.flex{
+    display: flex;
+    justify-content: left;
+
+}
+
+h1,h2,h3,h4,h5{
+    color: white !important;
+}
+
+
+.user-comment{
+    color: white !important;
+}
+
+.info-card-body{
+    background-color: #262626;
+}
+
+.fornt-white{
+    color: white !important;
+}
+
+.info-details{
+    color:white !important
+}
+
+
+.f-bgm{
+    background-color: #262525;
+    color: white !important;
+}
+.f-policy{
+    color: white !important;
+    margin-bottom: 1rem;
+}
+
+.comment-section-1{
+    background-color: #262626;
+}
+
+
+.comment-section-3{
+    background-color: #242424;;
+}
+
+.login-color{
+    color: #ddd !important;
+}
+
+.top-title-like{
+    /* background-color: yellow; */
+    display: flex;
+    justify-content: center;
+    /* background-color: yellow; */
+    align-items: center;
+    gap: 1rem;
+}
+
+.liked-numbers{
+    display: flex;
+    gap: 1rem;
+    justify-content: left;
+    align-items: center;
+    background-color: #262626;
+    /* background-color: yellwo; */
+    /* margin-left: 10rem; */
+    
+}
+
+.liked-count{
+    /* background-color: #fff; */
+    color: pink !important;
+}
+
+.navbar-color{
+    background-color: #262525!important;
+    box-shadow: none !important;
+}
+
+.navbar {
+    border: none !important;
+}
+
+.container{
+    margin: 0 !important;
+}
+
+.flex-display{
+    display: flex;
+    flex-direction: column;
+    /* gap: 8rem; */
+}
+
+.side-bar{
+    display: flex;
+    /* flex-direction: column; */
+    gap: 5rem;
+    justify-content: center;
+}
+
+.info-top{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 0rem 0 0rem;
+    color: white;
+    /* background-color: yellow; */
+}
+
+
+.all-details{
+    padding:0 1rem;
+
+}
+
+
+.body-container{
+    position: relative;
+    min-height: 71vh !important;
+}
+
+/* .card-body{
+    background-color: #262626;
+    color: white !important ;
+} */
+
+footer{
+    /* position: absolute; */
+    /* bottom: 0; */
+    width: 100%;
+    /* height: 2.5rem; */
+}
+.posts-create{
+    padding: 0 ;
+}
+
+.search-posts-create{
+    /* background-color: yellow; */
+    margin-top: 5rem;
+    margin-bottom: 0;
+}
+
+.author-like{
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.side-bar>a{
+    text-decoration: none;
+    color: #f6f6f6;
+    font-style:italic;
+    /* background-color: yellow; */
+}
+
+
+.gap-posts{
+
+    width: 100%;
+    height: 10px;
+    background-color: #262624;
+
+}
+
+
+.details-center{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.show-details{
+    background-color: yellow;
+    padding: 1rem;
+    border-radius: 2%;
+    
+}
+.porfile-image{
+        background-color: inherit;
+        border: 2px solid #262626;
+        /* border-radius: 50%; */
+}
+
+.review-body-rating>a{
+    text-decoration: none;
+    color: white;
+}

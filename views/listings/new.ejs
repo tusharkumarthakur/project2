@@ -1,0 +1,123 @@
+<% layout("/layouts/boilerplate.ejs") -%>
+<style>
+
+</style>
+
+<h2>Add new blog</h2>
+<div class="row">
+    <div class="col-7 offset-0">
+
+<form novalidate class="needs-validation" action="/blog" method="post" enctype="multipart/form-data">
+
+    
+    <div class="mb-3 login-color">
+        <label for="title" class="form-label"><b>Title</b></label>
+        <input minlength="1" maxlength="110" type="text" name="listing[title]" placeholder="Enter title" id="title"
+            class="form-control" required>
+        <div class="valid-feedback">Title looks good!</div>
+        <div class="invalid-feedback">Enter a valid title!</div>
+    </div>
+    <div class="mb-3 login-color">
+        <label required for="author" class="form-label"><b>Author</b></label>
+        <input type="text" minlength="2" maxlength="40" name="listing[author]" required placeholder="Enter author name"
+            id="author" class="form-control">
+        <div class="valid-feedback">Name looks good!</div>
+        <div class="invalid-feedback">Enter a valid name!</div>
+    </div>
+
+    <div class="mb-3 login-color">
+        <label for="slug" class="form-label"><b>Slug</b></label>
+        <input minlength="1" maxlength="110" type="text" name="listing[slug]" placeholder="Enter slug" id="slug"
+            class="form-control" required>
+        <div class="valid-feedback">Slug looks good!</div>
+        <div class="invalid-feedback">Enter must needed!</div>
+    </div>
+
+    <div class="mb-3 login-color">
+        <label for="tags" class="form-label"><b>Tags</b></label>
+        <input  type="text" name="listing[tag]" placeholder="Enter tag comma seperated" id="tags"
+            class="form-control" required>
+        <div class="valid-feedback">tags are good!</div>
+        <div class="invalid-feedback">Enter must needed!</div>
+    </div><br>
+    <div class="mb-3 login-color">
+        <label for="category" class="form-label"><b>Category</b></label>
+        <select id="category"  name="listing[category]" required>
+            <option value="">Select a category</option>
+            <option value="Technology">Technology</option>
+            <option value="Travel">Travel</option>
+            <option value="Food">Food</option>
+            <option value="Fashion">Fashion</option>
+            <option value="Health">Health</option>
+            <option value="Others">Others</option>
+        </select>
+    </div>
+    <div class="mb-3 login-color">
+        <label for="image" class="form-label"><b>Image Upload</b></label>
+        <input type="file" name="image" id="image" class="form-control">
+    </div>
+    <div class="mb-3 login-color">
+        <label for="editor-content" class="form-label"><b>Content</b></label>
+        <textarea required placeholder="Enter content...." name="listing[content]" cols="5" rows="7" id="editor-content"
+            class="form-control"></textarea>
+        <div class="valid-feedback">Content done!</div>
+        <div class="invalid-feedback">Content must needed!</div>
+    </div>
+        <div class="row ">
+            
+                <div class="col mb-3 login-color">
+                    <label for="country" class="form-label"><b>country</b></label>
+                    <input minlength="1" maxlength="110" type="text" name="listing[country]" placeholder="Enter country name" id="country"
+                        class="form-control" required>
+                    <!-- <div class="valid-feedback">Content done!</div> -->
+                    <div class="invalid-feedback">country name must needed!</div>
+                </div>
+                <div class="col mb-3 offset-5 login-color" id="">
+                    <label for="publish-radio" class="form-label"><b>Do you want to publish:</b> </label><br>
+                    <input required type="radio" id="publish-radio" name="listing[published]" value="true"> yes
+                    <input required type="radio" id=" publish-radio" name="listing[published]" value="false"> no
+                    <!-- <div class="valid-feedback">Published!</div> -->
+                    <div class="invalid-feedback">You should chose you want to publish or not!</div>
+                </div>
+                
+            
+        </div>
+    </div>
+    <br><br>
+
+</div>
+
+    <center><button class="btn btn-primary btn-sm mb-2">submit</button></center>
+    
+    </div>
+</form>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Include Trumbowyg script -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.25.1/trumbowyg.min.js"></script>
+<script>
+    // Initialize Trumbowyg editor
+    $('#editor-content').trumbowyg({
+        btns: [
+            ['formatting'],
+            ['bold', 'italic', 'underline', 'strikethrough'],
+            ['link'],
+            ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
+            ['unorderedList', 'orderedList'],
+            ['horizontalRule'],
+            ['removeformat']
+        ],
+        autogrow: true,
+        fullscreenable: false
+    });
+
+    // Add an event listener to the form submission
+    $('form').submit(function () {
+        // Get the content from the editor
+        var content = $('#editor-content').val();
+        // Trim spaces from the beginning and end of the content
+        content = content.trim();
+        // Set the trimmed content back to the editor
+        $('#editor-content').val(content);
+    });
+</script>

@@ -1,0 +1,89 @@
+<% layout("/layouts/boilerplate.ejs") -%>
+<body>
+
+    <h2>edit blog</h2>
+    <div class="row">
+        <div class="col-5 offset-0">
+            <div class="newForm">
+                <form action="/blog/<%= user._id %>?_method=PUT" method="post" novalidate class="needs-validation">
+                    <div class="mb-3 login-color">
+                        <label for="title" class="form-label"><b>Title</b></label>
+                        <input required type="text" name="listing[title]" placeholder="<%= user.title %>" id="title" class="form-control">
+                        <div class="valid-feedback">Title looks good!</div>
+                        <div class="invalid-feedback">Enter Title!</div>
+                    </div>
+
+                    <div class="mb-3 login-color">
+                        <label for="slug" class="form-label"><b>Slug</b></label>
+                        <input minlength="1" maxlength="110" type="text" name="listing[slug]" placeholder="<%= user.slug %>" id="slug"
+                            class="form-control" required>
+                        <!-- <div class="valid-feedback">Slug looks good!</div> -->
+                        <div class="invalid-feedback">Enter must needed!</div>
+                    </div>
+
+                    <div class="mb-3 login-color">
+                        <label for="author" class="form-label"><b>Author</b></label>
+                        <input required type="text" name="listing[author]" placeholder="<%= user.author %>" id="author" class="form-control">
+                        <!-- <div class="valid-feedback">Title looks good!</div> -->
+                        <div class="invalid-feedback">Enter author name!</div>
+                    </div>
+                   
+                    <div class="col mb-3 login-color">
+                        <label for="country" class="form-label"><b>country</b></label>
+                        <input minlength="1" maxlength="110" type="text" name="listing[country]" placeholder="Enter country name" id="country"
+                            class="form-control" required>
+                        <!-- <div class="valid-feedback">Content done!</div> -->
+                        <div class="invalid-feedback">country name must needed!</div>
+                    </div>
+
+                    <div class="mb-3 login-color">
+                        <label for="form-content" class="form-label"><b>Content</b></label>
+                        <textarea id="editor-content" placeholder="Enter content...." required name="listing[content]" cols="20" rows="10"
+                            id="form-content" class="form-control"><%= user.content %></textarea>
+                        <div class="valid-feedback">Content done!</div>
+                        <div class="invalid-feedback">Enter some content!</div>
+                    </div>
+                   
+                    <br><br>
+                    <center><button class="btn btn-primary">save</button></center>
+                </form>
+            </div>
+        </div>
+    </div>
+    <form action="/blog/<%= user._id %>/user/<%= user.owner._id %>?_method=DELETE" method="post">
+        <button class="new-blog-btn btn btn-danger">delete l</button>
+        
+    </form>
+    
+
+</body>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Include Trumbowyg script -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.25.1/trumbowyg.min.js"></script>
+<script>
+    // Initialize Trumbowyg editor
+    $('#editor-content').trumbowyg({
+        btns: [
+            ['formatting'],
+            ['bold', 'italic', 'underline', 'strikethrough'],
+            ['link'],
+            ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
+            ['unorderedList', 'orderedList'],
+            ['horizontalRule'],
+            ['removeformat']
+        ],
+        autogrow: true,
+        fullscreenable: false
+    });
+
+    // Add an event listener to the form submission
+    $('form').submit(function () {
+        // Get the content from the editor
+        var content = $('#editor-content').val();
+        // Trim spaces from the beginning and end of the content
+        content = content.trim();
+        // Set the trimmed content back to the editor
+        $('#editor-content').val(content);
+    });
+</script>

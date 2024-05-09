@@ -1,0 +1,82 @@
+<!-- <nav class="navbar navbar-expand-md bg-body-tertiary border-bottom sticky-top ">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/blog"><i class="fa-solid fa-blog"></i></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav" >
+                <a class="nav-link "  href="/blog">Home</a>
+                <a class="nav-link " href="/blog">Explore</a>
+                
+            </div>
+            <div class="ms-auto">
+                <nav class="navbar bg-body-tertiary">
+                    <div class="container-fluid">
+                        <form  class="d-flex" role="search" action="/blog/search" method="get">
+                            <input class="form-control me-2" name="search" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-success"  type="submit">Search</button>
+                        </form>
+                    </div>
+                </nav>
+            </div>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="/blog/new">Create Blog</a>
+                <% if(!curUser) {%>
+                <a class="nav-link " href="/user/signup"><b>Sign up</b></a>
+                <a class="nav-link" href="/user/login"><b>Log in</b></a>
+                <% } else { %>
+                <a class="nav-link" href="/user/logout"><b>Logout</b></a>
+                <a class="nav-link" href="/user/info"><i class="fa-regular fa-user" style="color: brown; background-color:aliceblue ;"> </i><b>
+                    <%= curUser.name%>
+                </b></a>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</nav> -->
+
+
+<nav class="navbar navbar-dark navbar-color navbar-expand-md  border-bottom sticky-top " style="border-bottom: none !important;">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/blog"><i class="fa-solid fa-blog"></i></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link " href="/blog">Home</a>
+                <a class="nav-link " href="/blog">Explore</a>
+    
+                <!-- <a class="nav-link" href="#">Pricing</a> -->
+            </div>
+            <div class="ms-auto">
+                <nav class="navbar  bg-body-dark">
+                    <div class="container-fluid">
+                        <form class="d-flex" role="search" action="/blog/search" method="get">
+                            <input class="form-control-sm me-2  color-white" name="search" type="search" placeholder="Search"
+                                aria-label="Search">
+                            <button class="btn btn-sm btn-outline-secondary" type="submit">Search</button>
+                        </form>
+                    </div>
+                </nav>
+            </div>
+            <div class="navbar-nav ms-auto">
+                <!-- <button class="btn btn-dark shadow" id="btnSwitch">Toggle Mode</button> -->
+                <a class="nav-link" href="/blog/new">Create Blog</a>
+                <% if(!curUser) {%>
+                    <a class="nav-link " href="/user/signup"><b>Sign up</b></a>
+                    <a class="nav-link" href="/user/login"><b>Log in</b></a>
+                    <% } else { %>
+                        <a class="nav-link" href="/user/logout"><b>Logout</b></a>
+                        <a class="nav-link" href="/user/info"><i class="fa-regular fa-user"
+                                style="color: brown;  ;"> </i><b>
+                                <%= curUser.name%>
+                            </b></a>
+                        <% } %>
+            </div>
+        </div>
+    </div>
+</nav>

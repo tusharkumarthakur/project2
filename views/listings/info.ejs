@@ -1,0 +1,274 @@
+<% layout("/layouts/boilerplate.ejs") -%>
+
+    
+<div class="all-details">
+    <div class="info-top">
+    
+        ~ <%= user.owner.username %>
+    
+            <h2><i>
+                    <%= user.title %>
+                </i></h2>
+            <% if(curUser) {%>
+    
+                <% if(user.likeBy.includes(curUser._id)){ %>
+    
+                    <form action="/blog/like/<%= user._id %>" method="post">
+                        <button class="like-button card-body" style="font-size: 35px; display: inline-block ">
+                            <div class="liked-numbers">
+                                <i class="fa-solid fa-heart " style="color: red;"></i>
+                                <b class="card-body liked-count">
+                                    <%= user.likeBy.length %>
+                                </b>
+                            </div>
+                            <!-- <div>else</div> -->
+                        </button>
+                    </form>
+    
+                    <% } else{ %>
+                        <form action="/blog/like/<%= user._id %>" method="post">
+                            <button class="like-button card-body" style="font-size: 35px; display: inline-block ">
+                                <div class="liked-numbers ">
+                                    <i class="fa-solid fa-heart " style="color: black"></i>
+                                    <b class="card-body liked-count">
+                                        <%= user.likeBy.length %>
+                                    </b>
+                                </div>
+                                <!-- <div>else</div> -->
+                            </button>
+                        </form>
+    
+    
+    
+                        <% } %>
+    
+                            <% } else{ %>
+                                <div class="liked-numbers">
+                                    <i class="fa-solid fa-heart" style="color: silver; font-size: 35px;"></i>
+                                    <b class="card-body liked-count">
+                                        <%= user.likeBy.length %>
+                                    </b>
+                                </div>
+    
+                                <% } %>
+    </div>
+    
+ 
+    
+    
+    <div class="card-info ">
+        <div class="text-body-secondary card mb-3 row info-card-body mb-0 ">
+            <img style="max-height: 100vh;" src="<%= user.image.url %>" class="card-img-top" alt="no_img" loading="lazy">
+    
+        </div>
+        <div class="info-details">
+            <div class="card-body info-card-body mt-0 ">
+    
+    
+                <p><b>slug</b> : <%= user.slug %>
+                </p>
+    
+                <p><b>tags: </b>
+                    <% for(let tag of user.tags) { %>
+                        <span>[<%= tag %> ]</span>
+                        <% } %>
+                </p>
+                <p><b>author</b> : <%= user.author %>
+                </p>
+                <p class="card-text"><b>content</b> : <%- user.content %>
+                </p>
+                <p> <b>posting date</b>: <%= user.created_at.toISOString().slice(0,10) %>
+                </p>
+                <!-- <p> <b>update date</b>: <%= user.updated_at.toISOString().slice(0,10) %></p> -->
+                <p><b>country</b> : <%= user.country %>
+                </p>
+    
+                <p class="card-text"><small class="text-body-secondary" style="color: white !important;">Last updated <%=
+                            user.updated_at.toISOString().slice(0,10) %></small></p>
+            </div>
+        </div>
+    </div>
+    
+    
+    <% if((curUser && user.owner._id.equals(curUser._id))){ %>
+    
+        <br>
+    
+        <% if(user.published=="false" ) {%>
+    
+    
+            <form class="publish-form" action="/blog/editPublish/<%= user._id %>?_method=PATCH" method="post">
+                <div class="form-check form-switch publish-on-of">
+                    <input class="form-check-input" type="checkbox" name="on" value="true" id="flexSwitchCheckDefault">
+                    <label class="form-check-label" for="flexSwitchCheckDefault "><button
+                            class="publish-button btn btn-sm btn-primary"><b>Publish?</b></button></label>
+    
+                </div>
+    
+    
+            </form>
+    
+            <% } else{ %>
+                <form class="publish-form" action="/blog/editPublish/<%= user._id %>?_method=PATCH" method="post">
+    
+                    <div class="form-check form-switch publish-on-of">
+    
+                        <input class="form-check-input" type="checkbox" name="off" value="false"
+                            id="flexSwitchCheckDefault">
+                        <label class="form-check-label" for="flexSwitchCheckDefault "><button
+                                class="publish-button btn btn-secondary btn-sm"><b>Unpublish?</b></button></label>
+    
+                    </div>
+    
+    
+                </form>
+                <% } %>
+    
+    
+    
+                    <br>
+    
+    
+    
+    
+    
+                    <div class="row flex ">
+                        <div class="col-5 offset-0  ">
+    
+                            <form novalidate class="needs-validation"
+                                action="/blog/changeImage/<%= user._id %>?_method=PATCH" method="post" novalidate
+                                class="needs-validation" enctype="multipart/form-data">
+                                <div class="">
+                                    <label for="image">
+                                        <h4>Upload image :</h4>
+                                    </label>
+                                    <input required class="form-control" type="file" id="image" name="image">&nbsp;
+    
+                                    <div class="invalid-feedback">Enter a valid Format</div>
+                                </div>
+                                <button class="btn btn-primary btn-sm">
+                                    change image
+                                </button><br>
+    
+                            </form>
+    
+                        </div>
+                    </div>
+    
+                    <br>
+    
+                    <form action="/blog/edit/<%= user._id %>" method="get">
+                        <button class="btn btn-danger btn-lg">
+                            <i>Edit</i>
+                        </button>
+                    </form>
+                    <% } %>
+                        <!-- comment review -->
+                        <hr>
+                        <h4>Comment section</h4>
+    
+                        <div class=" row comment-section comment-section-1 mb-5">
+                            <div class="col-10">
+                                <% if(curUser) { %>
+    
+    
+                                    <br>
+                                    <form novalidate class="needs-validation" action="/review/<%= user._id %>/review"
+                                        method="post">
+    
+                                        <div class="mb-3">
+                                            <fieldset class="starability-slot">
+                                                <h5>
+                                                    <legend>Rating</legend>
+                                                </h5>
+                                                <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]"
+                                                    value="0" checked aria-label="No rating." />
+                                                <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+                                                <label for="first-rate1" title="Terrible">1 star</label>
+                                                <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+                                                <label for="first-rate2" title="Not good">2 stars</label>
+                                                <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+                                                <label for="first-rate3" title="Average">3 stars</label>
+                                                <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+                                                <label for="first-rate4" title="Very good">4 stars</label>
+                                                <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+                                                <label for="first-rate5" title="Amazing">5 stars</label>
+                                            </fieldset>
+                                        </div>
+    
+                                        <div class="row flex  ">
+                                            <div class="col-5 offset-0  ">
+    
+                                                <div class="mb-3">
+                                                    <label for="comment" class="form-label">
+                                                        <h5>Comment:</h5>
+                                                    </label>
+                                                    <input required placeholder="Enter your comment" class="form-control"
+                                                        type="text" name="review[comment]" id="comment">
+                                                    <div class="invalid-feedback">you can't leave it blank</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button class="btn btn-primary btn-sm">submit</button>
+                                    </form>
+                                    <% } %>
+                                        <div class="row user-comment comment-section-2">
+                                            <div class="col-10">
+                                                <% if( user.review.length) {%>
+                                                    <hr>
+                                                    <h4>All reviews (<%= user.review.length %>)</h4>
+    
+                                                    <div class="review-card ">
+    
+                                                        <% for(let rev of user.review) { %>
+    
+                                                            <div class=" review-body comment-section-3">
+                                                                <p class="review-body-rating "><a href="/blog/linked/account/<%= rev.author._id %>"> 
+                                                                <button class="porfile-image"><img style="border-radius: 50%;" src="<%= rev.author.image.url %>" height="40"
+                                                                        width="40" /></button>
+                                                                @<%= rev.author.username
+                                                                            %> </a>&nbsp;&nbsp; <span
+                                                                        class="starability-result"
+                                                                        data-rating="<%= rev.rating %>">
+                                                                    </span></p>
+    
+                                                                <div class="review-body-comment">
+                                                                    <%= rev.comment %>
+                                                                </div>
+    
+                                                                <!-- <div class="review-like">
+                                                                            <form action="" method="get">
+                                                                                <submit><i class="fa-regular fa-thumbs-up"></i></submit>
+                                                                            </form>
+                                                                            <form action="" method="get">
+                                                                                <submit><i class="fa-regular fa-thumbs-down"></i></submit>
+                                                                            </form>
+                                                            
+                                                                        </div> -->
+                                                                <% if((curUser && rev.author.equals(curUser._id))){ %>
+                                                                    <div class="delete">
+                                                                        <form
+                                                                            action="/review/<%= user._id %>/review/<%= rev._id %>?_method=DELETE"
+                                                                            method="post">
+                                                                            <button
+                                                                                class="btn btn-sm btn-primary mt-2">delete</button>
+                                                                        </form>
+                                                                    </div>
+                                                                    <% } %>
+                                                            </div>
+    
+                                                            <% } %>
+    
+                                                    </div>
+    
+    
+                                                    <% } else { %>
+                                                        <hr>
+                                                        <h4>No Comments!!</h4>
+                                                        <% } %>
+                                            </div>
+                                        </div>
+                            </div>
+    
+                        </div>
+</div>

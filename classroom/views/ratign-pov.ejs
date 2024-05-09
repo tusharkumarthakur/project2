@@ -1,0 +1,152 @@
+body {
+display: flex;
+flex-direction: column;
+min-height: 100vh;
+}
+
+.container {
+flex-grow: 1;
+}
+
+
+.row {
+--bs-gutter-x: 0 !important;
+justify-content: center;
+gap: 5rem;
+
+}
+
+.card {
+box-shadow: .1px .1px 1px .1px rgba(0, 0, 0, 0.803);
+border: none !important;
+/* box-shadow: 10px 10px 10px 10px rgba(yellow, green, pink, 1) !important; */
+transition: .1s ease-in;
+}
+
+
+
+
+.fa-blog {
+color: rgba(255, 0, 132, 0.803);
+font-size: 1.7rem;
+}
+
+
+.nav-link {
+color: #121212 !important;
+}
+
+
+
+/* footer */
+footer {
+
+margin-top: 1rem;
+height: 7rem;
+background-color: rgba(255, 192, 203, 0.299);
+}
+
+.f-info {
+padding: 1rem 1rem 0 1rem;
+display: flex;
+gap: 10px;
+flex-wrap: wrap;
+justify-content: center;
+align-items: center;
+}
+
+.f-info-icons {
+display: flex;
+justify-content: center;
+align-items: center;
+width: 100%;
+font-size: large;
+/* margin-right: 1rem; */
+text-align: center;
+/* background-color: green; */
+}
+
+.f-info-icons>i {
+font-size: larger;
+margin-right: 1rem;
+}
+
+.f-info-links {
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 1rem;
+text-align: center;
+width: 100%;
+/* background-color: red; */
+}
+
+
+.f-info-links>a {
+text-decoration: none;
+color: #121212;
+}
+
+.f-info-links>a:hover {
+text-decoration: underline;
+color: #121212;
+}
+
+/* card body */
+
+.card-body>a {
+text-decoration: none;
+color: #121212;
+opacity: 1;
+}
+
+.card-body img:hover {
+opacity: .8;
+}
+
+/* review */
+
+.review-card {
+padding: 0 1rem;
+display: flex;
+flex-wrap: wrap;
+justify-content: space-between;
+/* gap: 8rem; */
+/* border: 2px solid black !important; */
+}
+
+.review-body {
+/* display: fle; */
+width: 500px;
+margin-top: 2rem;
+max-height: 2000px;
+padding: .4rem;
+/* margin-right: 1rem; */
+height: min-content;
+/* border-radius: 20px; */
+/* border: 2px solid black; */
+box-shadow: .1px .1px 1px .1px rgba(0, 0, 0, 0.803);
+/* overflow-y:auto; */
+}
+
+
+.review-like {
+display: flex;
+gap: 1rem;
+justify-content: right;
+}
+
+.review-body-comment {
+/* max-width: 100px; */
+overflow-y: auto;
+display: inline-block;
+display: flex;
+flex-wrap: wrap;
+max-height: 170px;
+/* border: 2px solid yellow; */
+}
+
+.review-body-rating {
+display: flex;
+justify-content: space-between;
+}
